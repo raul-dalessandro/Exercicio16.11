@@ -37,13 +37,13 @@ Carro CadastrarCarro()
     Console.WriteLine("Digite a potencia do carro (somente o número):");
     int potencia = int.Parse(Console.ReadLine());
 
-    Motor m = new Motor();
+    Motor motor = new Motor();
 
-    m.Combustivel = combustivel;
-    m.Cilindrada = cilindrada;
-    m.Potencia = potencia;
+    motor.Combustivel = combustivel;
+    motor.Cilindrada = cilindrada;
+    motor.Potencia = potencia;
 
-    Carro c = new Carro(fabricante, modelo, anofabricacao, anomodelo,valor,m);
+    Carro c = new Carro(fabricante, modelo, anofabricacao, anomodelo,valor,motor);
 
     return c;
 }

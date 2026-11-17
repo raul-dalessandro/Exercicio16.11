@@ -7,26 +7,50 @@
 //Crie um construtor que receba os três valores e um método get para cada propriedade.
 //Sobrescreva o método ToString() para retornar as informações do livro.
 
-Livro l1;
-void CadastrarLivro()
+Livro CadastrarLivro()
 {
     Console.WriteLine("Informe o Titulo: ");
     string titulo = Console.ReadLine();
     Console.WriteLine("Informe o Autor: ");
     string autor = Console.ReadLine();
     Console.WriteLine("Informe o Numero de páginas: ");
-    int numeroPag = int.Parse(Console.ReadLine());
+    int numeroPaginas = int.Parse(Console.ReadLine());
 
-    Livro l = new(titulo, autor, numeroPag);
-    l1 = l;
+    while (numeroPaginas <= 0)
+    {
+        Console.WriteLine("O número de páginas deve ser positivo.");
+        Console.WriteLine("Informe novamente o número de páginas: ");
+        numeroPaginas = int.Parse(Console.ReadLine());
+    }
 
+    return new Livro (titulo, autor, numeroPaginas);
 }
 
-CadastrarLivro();
+Livro[] PopularVetor()
+{
+    int x = 0;
+    while (x <= 0)
+    {
+        Console.WriteLine("Informe quantos livros voce quer cadastrar:");
+        x = int.Parse(Console.ReadLine());
+    }
 
-    Console.WriteLine(l1.getTitulo());
-    Console.WriteLine(l1.getAutor());
-    Console.WriteLine(l1.getNumeroPaginas());
-    Console.WriteLine(l1.ToString());
+    Livro[] livros = new Livro[x];
 
-    Console.WriteLine(l1);//se mandar assim ja chama automaticamente o ToString que sobrescrevi
+    for (int i = 0; i < livros.Length; i++ )
+    {
+        livros[i] = CadastrarLivro();
+    }
+    return livros;
+}
+
+void MostrarVetor(Livro[] livros)
+{
+    for (int i = 0; i < livros.Length; i++)
+    {
+        Console.WriteLine(livros[i]); //se mandar assim ja chama automaticamente o ToString que sobrescrevi
+    }
+}
+
+MostrarVetor(PopularVetor());
+
